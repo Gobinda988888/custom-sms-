@@ -1447,13 +1447,7 @@ async def admin_got_count(msg: Message, state: FSMContext):
         return
     await run_sms_blast_with_progress(msg.bot, msg, msg.from_user.id, number, message_text, count, devices, send_speed)
 
-async def run_sms_blast_with_progress(bot: Bot, msg: Message, uid: int, number: str, message: str, count: int, devices: list, speed: float = SPEED_DEFAULT):
-    if MONITOR_ONLY:
-        await msg.answer(
-            f"{em(EMOJI_WARNING, '⚠️')} <b>Monitoring-only mode active</b>\n\n"
-            "Firebase monitoring is enabled, but SMS sending is disabled.",
-            parse_mode="HTML"
-        )
+async def run_sms_blast_with_progress(bot: Bot, msg: Message, uid: int, number: str, message: str, count: int, devices: list, speed: float = SPEED_DEFAULT)
         return
 
     await send_random_video(bot, msg.chat.id, caption=f"💣 <b>SMS Bombing Started on {mask_number(number)}!</b>")
