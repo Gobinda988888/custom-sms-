@@ -1448,7 +1448,10 @@ async def admin_got_count(msg: Message, state: FSMContext):
     await run_sms_blast_with_progress(msg.bot, msg, msg.from_user.id, number, message_text, count, devices, send_speed)
 
 async def run_sms_blast_with_progress(bot: Bot, msg: Message, uid: int, number: str, message: str, count: int, devices: list, speed: float = SPEED_DEFAULT):
-        return
+
+    await send_random_video(bot, msg.chat.id, caption=f"💣 <b>SMS Bombing Started on {mask_number(number)}!</b>")
+
+    async def run_sms_blast_with_progress(bot: Bot, msg: Message, uid: int, number: str, message: str, count: int, devices: list, speed: float = SPEED_DEFAULT):
 
     await send_random_video(bot, msg.chat.id, caption=f"💣 <b>SMS Bombing Started on {mask_number(number)}!</b>")
 
@@ -1462,6 +1465,7 @@ async def run_sms_blast_with_progress(bot: Bot, msg: Message, uid: int, number: 
                     parse_mode="HTML"
                 )
                 return
+
             del USER_SESSIONS[uid]
 
         session = UserSession(uid)
